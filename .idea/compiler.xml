@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="sidplaycore" />
         <module name="sidplaydb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="sidplay" target="1.5" />
+      <module name="sidplaycore" target="1.5" />
       <module name="sidplaydb" target="1.5" />
     </bytecodeTargetLevel>
   </component>
