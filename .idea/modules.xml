@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/net.teufel.sidplay.iml" filepath="$PROJECT_DIR$/net.teufel.sidplay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sidplaycore/sidplaycore.iml" filepath="$PROJECT_DIR$/sidplaycore/sidplaycore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sidplaydb/sidplaydb.iml" filepath="$PROJECT_DIR$/sidplaydb/sidplaydb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sidplayweb/sidplayweb.iml" filepath="$PROJECT_DIR$/sidplayweb/sidplayweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sidplayweb-rap/sidplayweb-rap.iml" filepath="$PROJECT_DIR$/sidplayweb-rap/sidplayweb-rap.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,20 @@
+<module xmlns="urn:jboss:module:1.3" name="org.eclipse.rap">
+
+    <properties>
+    </properties>
+
+    <resources>
+        <artifact name="org.eclipse.platform:org.eclipse.core.commands:3.8.1"/>
+        <artifact name="org.eclipse.platform:org.eclipse.core.runtime:3.12.0"/>
+        <artifact name="org.eclipse.platform:org.eclipse.equinox.common:3.8.0"/>
+        <artifact name="org.eclipse.rap:org.eclipse.rap.jface:3.1.0-M3"/>
+        <artifact name="org.eclipse.rap:org.eclipse.rap.jface.databinding:3.1.0-M3"/>
+        <artifact name="org.eclipse.rap:org.eclipse.rap.rwt:3.1.0-M3"/>
+    </resources>
+
+    <dependencies>
+        <module name="javax.servlet.api"/>
+        <module name="javax.api"/>
+    </dependencies>
+
+</module>
