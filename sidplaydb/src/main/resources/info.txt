@@ -25,3 +25,11 @@ ID | TYPE
 SID_FILES
 
 ID | PATH | FILE_NAME | FILE
+
+
+Handhabung mit Maven
+======================
+
+mvn flyway:info    --> Info ueber DB ausgeben
+mvn flyway:migrate  -> Datenbank Migration starten (alle SQL-Skripte in resources/db/migration werden durchgelaufen)
+mvn exec:exec     ---> Datenbank starten
