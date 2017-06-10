@@ -41,6 +41,13 @@ public class SidDaoJdbcTest {
 		type = result.get(2);
 		assertEquals(3, type.getId());
 		assertEquals("GAMES", type.getType());
+		
 	}
+	
+	@Test
+	public void testGetSid() {
+		assertNotNull(sidDaoJdbc.getSid());
+	}
+	
 
 }
