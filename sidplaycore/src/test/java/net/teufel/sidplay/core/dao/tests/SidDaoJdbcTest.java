@@ -9,7 +9,7 @@ import net.teufel.sidplay.core.dao.DataSourceFactory;
 import net.teufel.sidplay.core.dao.SidDaoJdbc;
 import net.teufel.sidplay.core.domain.Type;
 
-public class SidDaoJdbcTests {
+public class SidDaoJdbcTest {
 
 	private SidDaoJdbc sidDaoJdbc;
 
