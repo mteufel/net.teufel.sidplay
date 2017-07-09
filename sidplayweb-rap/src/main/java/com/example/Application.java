@@ -18,7 +18,7 @@ public class Application {
             driver.driverModuleName("org.hsqldb");
         }).dataSource("hsqldb-ds", (ds) -> {
             ds.driverName("hsqldb");
-            ds.connectionUrl("jdbc:hsqldb:hsql://localhost:9001/sidplaydb");
+            ds.connectionUrl("jdbc:hsqldb:hsql://192.168.2.45:9002/sidplaydb");
             ds.userName("SA");
         }));
 

@@ -9,7 +9,7 @@ public class DataSourceFactory {
     public static DataSource erzeugeDataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");
-        ds.setUrl("jdbc:hsqldb:hsql://192.168.2.45:9001/sidplaydb");
+        ds.setUrl("jdbc:hsqldb:hsql://192.168.2.45:9002/sidplaydb");
         ds.setUsername("SA");
         ds.setPassword("");
         return ds;
