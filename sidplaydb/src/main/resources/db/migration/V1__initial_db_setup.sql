@@ -21,7 +21,7 @@ create table TYPE (
 create table SID_IDX (
     ID int not null,
     TYPE_ID int not null,
-    VALUE varchar(200) not null
+    VALUE varchar(500) not null
 );
 
 create table SID_SONGLENGTHS (
