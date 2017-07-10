@@ -2,7 +2,7 @@ create table SID (
     ID int not null,
     TITLE varchar(200),
     AUTHOR varchar(200),
-    RELEASE varchar(100),
+    RELEASE varchar(200),
     NO_SUBTUNES int,
     PREFERRED_MODEL varchar(20)
 );
@@ -10,7 +10,7 @@ create table SID (
 create table SID_FILES (
     ID int not null,
     PATH varchar(200),
-    FILE_NAME varchar(50)
+    FILE_NAME varchar(200)
 );
 
 create table TYPE (
