@@ -1,10 +1,29 @@
 java -cp ../hsqldb/lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:set-test --dbname.0 set
 
+*** UI-Layout ***
+
+                    Sidhub
+               OOOOOOOOOOOOOOOO
+               
+               
+             Title | Author | Release
+             
+             
+             
+             
+  -----------------------------------------------
+  TITLE           ST  PL  PAUS              
+  author  0:53 ...........O....... 01:23   VOL ...O..
 
 
-SID
+*** SID ***
 
-ID | FILE_ID | TITLE | AUTHOR | RELEASED | NO_SUBTUNES | PREFERRED_MODEL
+ID | INT 
+TITLE | VARCHAR(200)
+AUTHOR | 
+RELEASED | 
+NO_SUBTUNES | 
+PREFERRED_MODEL
 
 
 SID_INDEX

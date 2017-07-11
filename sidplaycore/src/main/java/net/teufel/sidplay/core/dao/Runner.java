@@ -16,21 +16,29 @@ public class Runner {
 		SidNode songlengths = SidUtil.readSonglengths();
 		SidDaoJdbc sidDao = new SidDaoJdbc(DataSourceFactory.erzeugeDataSource());
 		List<Type> types = sidDao.getTypes();
-
-		types.forEach(type -> {
-			
-			try {
-				System.out.println("START [" + type.getType() + "]: " + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()));
-				List<Sid> sids = SidUtil.readSids(songlengths, type.getType());
-				
-				sids.forEach(sid -> {
-//					System.out.println(sid.toString());
-					sidDao.insertSid(type, sid);
-				});
-				System.out.println("END [" + type.getType() + "]: " + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()));	
-			} catch (IOException e) {
-				System.err.println(e.getMessage());
-			}
+//
+//		types.forEach(type -> {
+//			
+//			try {
+//				System.out.println("START [" + type.getType() + "]: " + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()));
+//				List<Sid> sids = SidUtil.readSids(songlengths, type.getType());
+//				
+//				sids.forEach(sid -> {
+////					System.out.println(sid.toString());
+//					sidDao.insertSid(type, sid);
+//				});
+//				System.out.println("END [" + type.getType() + "]: " + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()));	
+//			} catch (IOException e) {
+//				System.err.println(e.getMessage());
+//			}
+//		});
+		
+		Type type = types.get(0);
+		List<Sid> sids = SidUtil.readSids(songlengths, type.getType());
+		
+		sids.forEach(sid -> {
+			System.out.println(sid.toString());
+			sidDao.insertSid(type, sid);
 		});
 		
 	}

@@ -48,7 +48,6 @@ public class SidDaoJdbc extends JdbcDaoSupport {
 		try {
 
 			final int fileId = getJdbcTemplate().queryForObject("call next value for file_id", Integer.class);
-			final int sidId = getJdbcTemplate().queryForObject("call next value for sid_id", Integer.class);
 			final InputStream is = new FileInputStream(sid.getFile());
 
 			LobHandler lobHandler = new DefaultLobHandler();
@@ -60,15 +59,24 @@ public class SidDaoJdbc extends JdbcDaoSupport {
 					new int[] { Types.NUMERIC, Types.VARCHAR, Types.VARCHAR, Types.BLOB });
 			
 			// write into table SID
-			getJdbcTemplate().update("INSERT INTO sid (id, file_id, title, author, release, no_subtunes, preferred_model) VALUES (?, ?, ?, ?, ?, ?, ?)",
-					new Object[] { sidId, fileId, sid.getTitle(), sid.getAuthor(), sid.getRelease(), sid.getNumberSubtunes(), sid.getPreferredModel() },
-					new int[] { Types.NUMERIC, Types.NUMERIC, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.NUMERIC, Types.VARCHAR });
+			getJdbcTemplate().update("INSERT INTO sid (id, title, author, release, no_subtunes, preferred_model) VALUES (?, ?, ?, ?, ?, ?)",
+					new Object[] { fileId, sid.getTitle(), sid.getAuthor(), sid.getRelease(), sid.getNumberSubtunes(), sid.getPreferredModel() },
+					new int[] { Types.NUMERIC, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.NUMERIC, Types.VARCHAR });
 
 			// write into table SID_IDX
-//			String indexValue = type.getType() + " " + sid.getPath() + " " + sid.getFileName() + " " + sid.getTitle() + " " + sid.getAuthor() + " " + sid.getRelease() + " " + sid.getPreferredModel();
-//			getJdbcTemplate().update("INSERT INTO sid_idx (id, type_id, value) VALUES (?, ?, ?)",
-//					new Object[] { fileId, type.getId(), indexValue },
-//					new int[] { Types.NUMERIC, Types.NUMERIC, Types.VARCHAR });
+			String indexValue = type.getType() + " " + sid.getPath() + " " + sid.getFileName() + " " + sid.getTitle() + " " + sid.getAuthor() + " " + sid.getRelease() + " " + sid.getPreferredModel();
+			getJdbcTemplate().update("INSERT INTO sid_idx (id, type_id, value) VALUES (?, ?, ?)",
+					new Object[] { fileId, type.getId(), indexValue },
+					new int[] { Types.NUMERIC, Types.NUMERIC, Types.VARCHAR });
+			
+			// write into table SID_SONGLENGTHS
+			int n = 1;
+			for (String length : sid.getSonglengths()) {
+				getJdbcTemplate().update("INSERT INTO sid_songlengths (id, no_subtune, length) VALUES (?, ?, ?)",
+						new Object[] { fileId, n, length },
+						new int[] { Types.NUMERIC, Types.NUMERIC, Types.VARCHAR });
+				n++;
+			}
 			
 			is.close();
 			
