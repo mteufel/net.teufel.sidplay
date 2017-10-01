@@ -46,8 +46,7 @@ public class SidUtil {
 	
 	public static List<Path> readPaths(String type) throws IOException {
 		SidFileVisitor visitor = new SidFileVisitor();
-		//Files.walkFileTree(Paths.get(HVSC_HOME + "/" + type), visitor);
-		Files.walkFileTree(Paths.get(HVSC_HOME + "/DEMOS/S-Z"), visitor);
+		Files.walkFileTree(Paths.get(HVSC_HOME + "/" + type), visitor);
 		System.out.println("Number of Directories:" + visitor.getDirectoryCount());
 		System.out.println("Number of Files:" + visitor.getFileCount());
 		System.out.println("Number of Paths in Result:" + visitor.getFileList().size());

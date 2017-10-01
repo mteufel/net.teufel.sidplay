@@ -32,12 +32,13 @@ public class Runner {
 //				System.err.println(e.getMessage());
 //			}
 //		});
-		
+
+
+
 		Type type = types.get(0);
 		List<Sid> sids = SidUtil.readSids(songlengths, type.getType());
 		
 		sids.forEach(sid -> {
-			System.out.println(sid.toString());
 			sidDao.insertSid(type, sid);
 		});
 		

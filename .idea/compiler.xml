@@ -13,9 +13,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="sidplay" target="1.5" />
-      <module name="sidplaycore" target="1.5" />
-      <module name="sidplaydb" target="1.5" />
+      <module name="sidplaycore" target="1.8" />
+      <module name="sidplaydb" target="1.8" />
       <module name="sidplayweb" target="1.8" />
       <module name="sidplayweb-rap" target="1.8" />
     </bytecodeTargetLevel>

@@ -83,5 +83,12 @@
     <orderEntry type="library" name="Maven: org.eclipse.rap:org.eclipse.rap.jface:3.1.0-M3" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.rap:org.eclipse.rap.jface.databinding:3.1.0-M3" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.rap:org.eclipse.rap.rwt:3.1.0-M3" level="project" />
+    <orderEntry type="module" module-name="sidplaycore" />
+    <orderEntry type="library" name="Maven: org.hsqldb:hsqldb:2.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.3.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.3.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:4.3.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.8.RELEASE" level="project" />
   </component>
 </module>

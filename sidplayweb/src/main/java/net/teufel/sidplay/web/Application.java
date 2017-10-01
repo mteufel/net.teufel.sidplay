@@ -33,8 +33,8 @@ public class Application {
         JAXRSArchive rsDeployment = ShrinkWrap.create(JAXRSArchive.class).setContextRoot("/api");
         rsDeployment.addResource(GetSidResource.class);
         rsDeployment.addAllDependencies();
-        rsDeployment.addPackage("net.teufel.sidplay");
-        rsDeployment.addModule("org.hsqldb");        
+        rsDeployment.addPackage("net.teufel.sidplay.web.resources");
+        rsDeployment.addModule("org.hsqldb");
 
         swarm.deploy(rsDeployment);
 
