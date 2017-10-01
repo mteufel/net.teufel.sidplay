@@ -108,10 +108,14 @@ public class SidUtil {
         int flag=1; 
         for(int i=0; i<32; i++) { 
             if(flag != 0) {
-                flag=result[i]=data[start+i]; 
-            } else {
-                flag=result[i]=0; 
+				if (data[start+i] != 0) {
+					flag=result[i]=data[start+i];
+				}
+
             }
+            //else {
+            //    flag=result[i]=0;
+            //}
         }
         return new String(result, "ISO-8859-1");
 	}

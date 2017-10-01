@@ -1,8 +1,8 @@
-package net.teufel.sidplay.web.servlets;
+package net.teufel.sidplay.servlets;
 
-import net.teufel.sidplay.Util;
-import net.teufel.sidplay.core.dao.SidDaoJdbc;
+import net.teufel.sidplay.dao.SidDaoJdbc;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,15 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/*")
+@WebServlet("/servlets/*")
 public class HelloWorldServlet extends HttpServlet {
+
+    @Inject
+    SidDaoJdbc sidDao;
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
 
-        res.getWriter().write("Hello\n\n");
-
-        SidDaoJdbc sidDao = new SidDaoJdbc(Util.getDataSource());
+        res.getWriter().write("Hello World!\n\n");
 
 
         sidDao.getTypes().forEach(t -> {

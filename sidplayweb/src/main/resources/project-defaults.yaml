@@ -1,0 +1,18 @@
+swarm:
+  http:
+    port: 7788
+  deployment:
+    sidplayweb.war:
+      jaxrs:
+        application-path: /api
+  datasources:
+    data-sources:
+      hsqldb-ds:
+        driver-name: hsqldb-driver
+        connection-url: jdbc:hsqldb:hsql://35.187.72.52:9001/sidplay
+        user-name: SA
+        password: donnerstag2
+    jdbc-drivers:
+      hsqldb-driver:
+        driver-class-name: org.hsqldb.jdbc.JDBCDriver
+        driver-module-name: org.hsqldb

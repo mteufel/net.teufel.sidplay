@@ -1,30 +1,24 @@
 package net.teufel.sidplay;
 
-import org.springframework.jdbc.datasource.UserCredentialsDataSourceAdapter;
-import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class Util {
 
-    public static UserCredentialsDataSourceAdapter getDataSource() {
-        DataSource ds = null;
+    public static DataSource getDataSource() {
         try {
-            Context initContext = new InitialContext();
-            Context envContext = (Context) initContext.lookup("java:jboss/");
-            ds = (DataSource) envContext.lookup("datasources/hsqldb-ds");
+            InitialContext context = new InitialContext();
+            DataSource ds = (DataSource) context.lookup("java:jboss/datasources/hsqldb-ds");
+            if (ds==null) {
+                System.out.println("no Datasource found");
+            }
+            return ds;
 
-            UserCredentialsDataSourceAdapter adapter = new UserCredentialsDataSourceAdapter();
-            adapter.setTargetDataSource(ds);
-
-            adapter.setUsername("SA");
-            adapter.setPassword("");
-
-            return adapter;
+        } catch (NamingException e) {
+            e.printStackTrace();
         }
-        catch (final Exception e) {
-            return null;
-        }
+        return null;
     }
 
 }
