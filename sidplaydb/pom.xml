@@ -8,24 +8,16 @@
     <artifactId>sidplay-db</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>4.2.0</version>
+                <version>5.0.7</version>
                 <configuration>
-                    <url>jdbc:hsqldb:hsql://35.187.72.52:9001/sidplay</url>
+                    <url>jdbc:hsqldb:hsql://localhost:9001/sidhubdb</url>
                     <user>sa</user>
-                    <password>donnerstag2</password>
+                    <password></password>
                 </configuration>
                 <dependencies>
                     <dependency>

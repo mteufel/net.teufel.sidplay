@@ -1,0 +1,49 @@
+# ------------------------------------------------------------------------------------------------------
+# Sidhubdb-Image auf Basis von HSQLDB / Arbeitet mit dem Benutzer sidhubdb
+#
+# Erstellt dieses Image:
+# cd net.teufel.sidhub.db
+# docker build -f Dockerfile-sidhubdb -t mteufel/sidhubdb .
+#
+# Startet Bash in Image:
+#  docker run -i -v /Users/marcteufel/web-prj/test:/run/test  -t mteufel/sidhubdb /bin/bash
+#
+# Raeumt das lokale Docker-Sytem komplett auf (Alle Images, Container, ... werden geloescht):
+# docker system prune -a    
+#
+# Aenderunghistorie:
+# Wann        Wer       Was
+# 01.04.2017  mteufel   Basisimage erstellt
+# ------------------------------------------------------------------------------------------------------
+
+FROM mteufel/debian-stretch-maven
+
+MAINTAINER Marc Teufel <teufel.marc@gmail.com>
+
+ENV MAVEN_VERSION 3.5.3
+
+RUN useradd -ms /bin/bash user
+WORKDIR /home/user
+USER user
+ENV JAVA_HOME /usr/java/jdk1.8.0_161
+ENV M2_HOME /usr/java/apache-maven-"${MAVEN_VERSION}"
+ENV M2 $M2_HOME/bin
+ENV PATH .:$JAVA_HOME/bin:$M2:$PATH
+
+RUN rm -rf sidplaydb/ && mkdir -p sidplaydb
+
+COPY sidplaydb/ sidplaydb/
+
+USER root
+RUN chown -R user:user /home/user/sidplaydb
+RUN chown -R user:user /opt/apps/maven/repo
+USER user
+
+RUN cd /home/user/sidplaydb \
+    && mvn flyway:migrate \
+    && mvn flyway:info
+
+EXPOSE 9001
+
+WORKDIR /home/user/sidplaydb
+#ENTRYPOINT [ "bash", "-c", "mvn exec:java" ]

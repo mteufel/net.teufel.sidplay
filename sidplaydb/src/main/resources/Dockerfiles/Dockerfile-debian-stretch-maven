@@ -1,0 +1,38 @@
+# ------------------------------------------------------------------------------------------------------
+# Debian 9, Java mit aktuellem Maven
+#
+# Erstellt dieses Image:
+# cd net.teufel.sidhub.db
+# docker build -f Dockerfile-debian-stretch-maven -t mteufel/debian-stretch-maven .
+#
+# Startet Bash in Image:
+#  docker run -i -v /Users/marcteufel/web-prj/test:/run/test  -t mteufel/debian-stretch-maven /bin/bash
+#
+# Raeumt das lokale Docker-Sytem komplett auf (Alle Images, Container, ... werden geloescht):
+# docker system prune -a    
+#
+# Aenderunghistorie:
+# Wann        Wer       Was
+# 01.04.2017  mteufel   Basisimage erstellt
+# ------------------------------------------------------------------------------------------------------
+
+FROM mteufel/debian-stretch-java
+
+MAINTAINER Marc Teufel <teufel.marc@gmail.com>
+
+ENV MAVEN_VERSION 3.5.3
+
+RUN cd /usr/java \
+    && curl -jkSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /usr/java/apache-maven-"${MAVEN_VERSION}"-bin.tar.gz http://www-eu.apache.org/dist/maven/maven-3/"${MAVEN_VERSION}"/binaries/apache-maven-"${MAVEN_VERSION}"-bin.tar.gz \
+    && rm -rf /usr/java/apache-maven-"${MAVEN_VERSION}" \
+    && tar xvf /usr/java/apache-maven-"${MAVEN_VERSION}"-bin.tar.gz -C /usr/java \
+    && rm -f *.tar.gz \
+    && rm -rf /opt/apps/ && mkdir -p /opt/apps/maven/repo \
+    && cd /usr/java/apache-maven-"${MAVEN_VERSION}"/conf \
+    && mv settings.xml settings.original
+
+COPY settings.xml /usr/java/apache-maven-"${MAVEN_VERSION}"/conf/
+
+ENV M2_HOME /usr/java/apache-maven-"${MAVEN_VERSION}"
+ENV M2 $M2_HOME/bin
+ENV PATH .:$M2:$PATH

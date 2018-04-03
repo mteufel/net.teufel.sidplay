@@ -1,0 +1,39 @@
+# ------------------------------------------------------------------------------------------------------
+# Basis Debian 9 (Stretch) Linux Docker Image mit Java 8_161 (server-jre)
+#
+# Erstellt dieses Image:
+# cd net.teufel.sidhub.db
+# docker build -f Dockerfile-debian-stretch-java -t mteufel/debian-stretch-java .
+#
+# Startet Bash in Image:
+#  docker run -i -v /Users/marcteufel/web-prj/test:/run/test  -t mteufel/debian-stretch-java /bin/bash
+#
+# Raeumt das lokale Docker-Sytem komplett auf (Alle Images, Container, ... werden geloescht):
+# docker system prune -a    
+#
+# Aenderunghistorie:
+# Wann        Wer       Was
+# 01.04.2017  mteufel   Basisimage erstellt
+# ------------------------------------------------------------------------------------------------------
+
+FROM debian:stretch-slim
+
+MAINTAINER Marc Teufel <teufel.marc@gmail.com>
+
+ENV SIG 2f38c3b165be4555a1fa6e98c45e0808
+
+ENV PKG server-jre 
+
+RUN apt-get update && apt-get install -y curl \
+    && rm -rf /usr/java/ && mkdir -p /usr/java \
+    && curl -jkSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /usr/java/"${PKG}"-8u161-linux-x64.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u161-b12/"${SIG}"/"${PKG}"-8u161-linux-x64.tar.gz \
+    && tar xvf /usr/java/"${PKG}"-8u161-linux-x64.tar.gz -C /usr/java/ \
+    && rm /usr/java/"${PKG}"-8u161-linux-x64.tar.gz 
+
+# Als Ergebnis haben wir jetzt eine Java-Installation im Order /usr/java/jdk1.8.0_161
+
+ENV JAVA_HOME /usr/java/jdk1.8.0_161
+ENV PATH .:$JAVA_HOME/bin:$PATH
+
+
+

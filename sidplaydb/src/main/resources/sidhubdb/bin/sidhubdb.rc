@@ -1,0 +1,4 @@
+urlid sidhubdb
+url jdbc:hsqldb:hsql://localhost:9001/sidhubdb
+username SA
+password
