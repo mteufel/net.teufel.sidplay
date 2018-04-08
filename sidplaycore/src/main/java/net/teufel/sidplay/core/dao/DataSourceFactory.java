@@ -1,5 +1,6 @@
 package net.teufel.sidplay.core.dao;
 
+import org.h2.jdbcx.JdbcDataSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
@@ -7,11 +8,18 @@ import javax.sql.DataSource;
 public class DataSourceFactory {
 
     public static DataSource erzeugeDataSource() {
-        DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");
-        ds.setUrl("jdbc:hsqldb:hsql://35.187.72.52:9001/sidplay");
-        ds.setUsername("SA");
-        ds.setPassword("donnerstag2");
+        //DriverManagerDataSource ds = new DriverManagerDataSource();
+        //ds.setDriverClassName("org.h2.Driver");
+        //ds.setUrl("jdbc:h2:tcp://localhost:9101/sidhub;COMPRESS=TRUE");
+        //ds.setUsername("sidhub");
+        //ds.setPassword("sidhub");
+
+        JdbcDataSource ds = new JdbcDataSource();
+        ds.setUrl("jdbc:h2:tcp://localhost:9101/sidhub");
+        ds.setUser("sidhub");
+        ds.setPassword("sidhub");
+        ds.setLoginTimeout(0);
+
         return ds;
     }
 

@@ -16,9 +16,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.4.0</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.197</version>
 		</dependency>
 
 		<dependency>
@@ -26,6 +26,14 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.3.8.RELEASE</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.ning</groupId>
+			<artifactId>compress-lzf</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

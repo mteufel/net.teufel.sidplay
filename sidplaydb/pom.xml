@@ -15,15 +15,15 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.0.7</version>
                 <configuration>
-                    <url>jdbc:hsqldb:hsql://localhost:9001/sidhubdb</url>
-                    <user>sa</user>
-                    <password></password>
+                    <url>jdbc:h2:tcp://localhost:9101/sidhub</url>
+                    <user>sidhub</user>
+                    <password>sidhub</password>
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>org.hsqldb</groupId>
-                        <artifactId>hsqldb</artifactId>
-                        <version>2.4.0</version>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.197</version>
                     </dependency>
                 </dependencies>
             </plugin>

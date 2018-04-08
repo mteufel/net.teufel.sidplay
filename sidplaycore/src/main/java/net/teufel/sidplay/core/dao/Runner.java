@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+
+
 import net.teufel.sidplay.core.domain.Sid;
 import net.teufel.sidplay.core.domain.SidNode;
 import net.teufel.sidplay.core.domain.Type;
@@ -14,6 +16,7 @@ public class Runner {
 	public static void main(String[] args) throws IOException {
 		
 		SidNode songlengths = SidUtil.readSonglengths();
+
 		SidDaoJdbc sidDao = new SidDaoJdbc(DataSourceFactory.erzeugeDataSource());
 		List<Type> types = sidDao.getTypes();
 //
@@ -34,12 +37,12 @@ public class Runner {
 //		});
 
 
-
 		Type type = types.get(0);
 		List<Sid> sids = SidUtil.readSids(songlengths, type.getType());
-		
+		System.out.println("Type = " + type.getType() + "(" + type.getId() + ")");
+		final SidDaoJdbc sidDao2 = new SidDaoJdbc(DataSourceFactory.erzeugeDataSource());
 		sids.forEach(sid -> {
-			sidDao.insertSid(type, sid);
+			sidDao2.insertSid(type, sid);
 		});
 		
 	}

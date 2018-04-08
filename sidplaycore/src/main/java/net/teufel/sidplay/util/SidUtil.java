@@ -15,7 +15,7 @@ import net.teufel.sidplay.core.domain.SidNode;
 
 public class SidUtil {
 
-	public static final String HVSC_HOME = "/Users/marcteufel/Desktop/C64Music";
+	public static final String HVSC_HOME = "/Users/vzteufem/Desktop/C64Music";
 	
 	public static List<Sid> readSids(SidNode sidNode, String type) throws IOException {
 		

@@ -3,6 +3,4 @@
 export SIDHUB_HOME=/Users/vzteufem/git/net.teufel.sidplay/sidplaydb/src/main/resources/sidhubdb/
 export SIDHUB_DATA=/Users/vzteufem/Desktop/testdb
 
-cp $SIDHUB_HOME/bin/server.properties $SIDHUB_DATA
-cd $SIDHUB_DATA
-java -cp $SIDHUB_HOME/lib/hsqldb-2.4.0.jar org.hsqldb.server.Server &
+java -Dh2.socketConnectTimeout=100000 -cp $SIDHUB_HOME/lib/h2-1.4.197.jar org.h2.tools.Server -tcpAllowOthers -tcpPort 9101 -baseDir $SIDHUB_DATA

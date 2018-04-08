@@ -10,7 +10,9 @@ create table SID (
 create table SID_FILES (
     ID int not null,
     PATH varchar(200),
-    FILE_NAME varchar(200)
+    FILE_NAME varchar(200),
+    FILE_SIZE_COMPRESSED int,
+    FILE_SIZE_UNCOMPRESSED int
 );
 
 create table TYPE (
@@ -24,7 +26,7 @@ create table SID_IDX (
     VALUE varchar(500) not null
 );
 
-create table SID_SONGLENGTHS (
+create table SID_SONGLENGTH (
 	ID int not null,
 	NO_SUBTUNE int not null,
 	LENGTH varchar(20) not null
