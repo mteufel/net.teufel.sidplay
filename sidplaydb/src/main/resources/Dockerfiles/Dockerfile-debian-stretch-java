@@ -11,29 +11,47 @@
 # Raeumt das lokale Docker-Sytem komplett auf (Alle Images, Container, ... werden geloescht):
 # docker system prune -a    
 #
-# Aenderunghistorie:
+# Aenderungshistorie:
 # Wann        Wer       Was
-# 01.04.2017  mteufel   Basisimage erstellt
+# 01.04.2018  mteufel   Basisimage erstellt
+# 12.05.2018  mteufel   Umstellung auf JDK 10.0.1
 # ------------------------------------------------------------------------------------------------------
 
 FROM debian:stretch-slim
 
 MAINTAINER Marc Teufel <teufel.marc@gmail.com>
 
-ENV SIG 2f38c3b165be4555a1fa6e98c45e0808
+# Java 10
+#
+#ENV SIG fb4372174a714e6b8c52526dc134031e
+#
+#ENV PKG serverjre
+#RUN apt-get update && apt-get install -y curl \
+#    && rm -rf /usr/java/ && mkdir -p /usr/java \
+#    && curl -jkSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /usr/java/"${PKG}"-10.0.1-linux-x64.tar.gz http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/"${SIG}"/"${PKG}"-10.0.1_linux-x64_bin.tar.gz \
+#    && tar xvf /usr/java/"${PKG}"-10.0.1-linux-x64.tar.gz -C /usr/java/ \
+#    && rm /usr/java/"${PKG}"-10.0.1-linux-x64.tar.gz
+# Als Ergebnis haben wir jetzt eine Java-Installation im Order /usr/java/
+#ENV JAVA_HOME /usr/java/jdk-10.0.1
+#ENV PATH .:$JAVA_HOME/bin:$PATH
 
-ENV PKG server-jre 
+
+ENV SIG a58eab1ec242421181065cdc37240b08
+
+ENV PKG server-jre
 
 RUN apt-get update && apt-get install -y curl \
     && rm -rf /usr/java/ && mkdir -p /usr/java \
-    && curl -jkSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /usr/java/"${PKG}"-8u161-linux-x64.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u161-b12/"${SIG}"/"${PKG}"-8u161-linux-x64.tar.gz \
-    && tar xvf /usr/java/"${PKG}"-8u161-linux-x64.tar.gz -C /usr/java/ \
-    && rm /usr/java/"${PKG}"-8u161-linux-x64.tar.gz 
+    && curl -jkSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /usr/java/"${PKG}"-8u172-linux-x64.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u172-b11/"${SIG}"/"${PKG}"-8u172-linux-x64.tar.gz \
+    && tar xvf /usr/java/"${PKG}"-8u172-linux-x64.tar.gz -C /usr/java/ \
+    && rm /usr/java/"${PKG}"-8u172-linux-x64.tar.gz
 
-# Als Ergebnis haben wir jetzt eine Java-Installation im Order /usr/java/jdk1.8.0_161
+# Als Ergebnis haben wir jetzt eine Java-Installation im Order /usr/java/jdk1.8.0_172
 
-ENV JAVA_HOME /usr/java/jdk1.8.0_161
+ENV JAVA_HOME /usr/java/jdk1.8.0_172
 ENV PATH .:$JAVA_HOME/bin:$PATH
 
 
 
+
+#http://download.oracle.com/otn-pub/java/jdk/8u172-b11/a58eab1ec242421181065cdc37240b08/server-jre-8u172-linux-x64.tar.gz

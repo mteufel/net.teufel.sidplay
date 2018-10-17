@@ -1,39 +1,34 @@
 create table SID (
-    ID int not null,
-    TITLE varchar(200),
-    AUTHOR varchar(200),
-    RELEASE varchar(200),
-    NO_SUBTUNES int,
-    PREFERRED_MODEL varchar(20)
+    ID INTEGER PRIMARY KEY ASC,
+    TITLE TEXT,
+    AUTHOR TEXT,
+    RELEASE TEXT,
+    NO_SUBTUNES INTEGER,
+    PREFERRED_MODEL TEXT
 );
 
 create table SID_FILES (
-    ID int not null,
-    PATH varchar(200),
-    FILE_NAME varchar(200),
-    FILE_SIZE_COMPRESSED int,
-    FILE_SIZE_UNCOMPRESSED int
+    SID_ID INTEGER,
+    PATH TEXT,
+    FILE_NAME TEXT,
+    FILE_SIZE_COMPRESSED INTEGER,
+    FILE_SIZE_UNCOMPRESSED INTEGER,
+    FILE BLOB
 );
 
 create table TYPE (
-    ID int not null,
-    TYPE varchar(20) not null
+    ID INTEGER PRIMARY KEY ASC,
+    TYPE TEXT
 );
 
 create table SID_IDX (
-    ID int not null,
-    TYPE_ID int not null,
-    VALUE varchar(500) not null
+    SID_ID INTEGER,
+    TYPE_ID INTEGER,
+    VALUE TEXT
 );
 
 create table SID_SONGLENGTH (
-	ID int not null,
-	NO_SUBTUNE int not null,
-	LENGTH varchar(20) not null
+  SID_ID INTEGER,
+	NO_SUBTUNE INTEGER,
+	LENGTH TEXT
 );
-
-ALTER TABLE PUBLIC.SID ADD CONSTRAINT SID_ID_pk PRIMARY KEY (ID);
-ALTER TABLE PUBLIC.SID_FILES ADD FILE BLOB NULL;
-ALTER TABLE PUBLIC.SID_FILES ADD CONSTRAINT SID_FILES_ID_pk PRIMARY KEY (ID);
-ALTER TABLE PUBLIC.TYPE ADD CONSTRAINT TYPE_ID_pk PRIMARY KEY (ID);
-ALTER TABLE PUBLIC.SID_IDX ADD CONSTRAINT SID_IDX_ID_pk PRIMARY KEY (ID);
