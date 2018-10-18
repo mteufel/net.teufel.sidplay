@@ -1,8 +1,8 @@
 package net.teufel.sidplay.dao;
 
+import net.teufel.sidplay.domain.Sid;
 import net.teufel.sidplay.domain.Type;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.annotation.PostConstruct;
@@ -28,28 +28,48 @@ public class SidDaoJdbc {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
+
+    public List<Sid> findSids(String search) {
+
+        String sql = "select s.id, s.title, s. author, s.release " +
+                     "from sid_idx i, sid s where i.sid_id=s.id and i.value like '%" + search + "%' " +
+                     "order by s.release desc ";
+
+        final List<Sid> result = new ArrayList<>();
+
+        jdbcTemplate.query(sql, rs -> {
+
+            Sid sid = new Sid();
+            sid.setSidId(rs.getInt("ID"));
+            sid.setTitle(rs.getString("TITLE"));
+            sid.setAuthor(rs.getString("AUTHOR"));
+            sid.setRelease(rs.getString("RELEASE"));
+            result.add(sid);
+
+        });
+
+        if (result.size()==0)
+            return null;
+
+        return result;
+
+    }
+
     public List<Type> getTypes() {
 
         String sql = "select * from type";
         final List<Type> result = new ArrayList<>();
-
-        jdbcTemplate.query(sql, new RowCallbackHandler() {
-            public void processRow(ResultSet rs) throws SQLException {
-                result.add(new Type(rs.getInt("ID"), rs.getString("TYPE")));
-            }
+        jdbcTemplate.query(sql, rs -> {
+            result.add(new Type(rs.getInt("ID"), rs.getString("TYPE")));
         });
-
         return result;
     }
 
 
-    public InputStream getSid() {
-        String sql = "select file from sid_files where id=2";
-        return jdbcTemplate.queryForObject(sql, new RowMapper<InputStream>(){
-            public InputStream mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return rs.getBlob("file").getBinaryStream();
-            }
-        });
+
+    public InputStream getSid(int sidId) {
+        String sql = "select file from sid_files where sid_id=?";
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> rs.getBlob("file").getBinaryStream(), sidId );
     }
 
 }

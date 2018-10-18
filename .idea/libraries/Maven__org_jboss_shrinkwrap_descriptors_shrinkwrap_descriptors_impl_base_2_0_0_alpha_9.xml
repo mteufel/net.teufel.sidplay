@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-impl-base:2.0.0-alpha-9">
     <CLASSES>
-      <root url="jar://$USER_HOME$/maven/repo/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-impl-base/2.0.0-alpha-9/shrinkwrap-descriptors-impl-base-2.0.0-alpha-9.jar!/" />
+      <root url="jar://$USER_HOME$/maven/repo-hama/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-impl-base/2.0.0-alpha-9/shrinkwrap-descriptors-impl-base-2.0.0-alpha-9.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/maven/repo/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-impl-base/2.0.0-alpha-9/shrinkwrap-descriptors-impl-base-2.0.0-alpha-9-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/maven/repo-hama/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-impl-base/2.0.0-alpha-9/shrinkwrap-descriptors-impl-base-2.0.0-alpha-9-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/maven/repo/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-impl-base/2.0.0-alpha-9/shrinkwrap-descriptors-impl-base-2.0.0-alpha-9-sources.jar!/" />
+      <root url="jar://$USER_HOME$/maven/repo-hama/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-impl-base/2.0.0-alpha-9/shrinkwrap-descriptors-impl-base-2.0.0-alpha-9-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

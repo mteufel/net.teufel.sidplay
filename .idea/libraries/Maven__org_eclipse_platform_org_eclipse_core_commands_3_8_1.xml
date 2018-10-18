@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.eclipse.platform:org.eclipse.core.commands:3.8.1">
     <CLASSES>
-      <root url="jar://$USER_HOME$/maven/repo/org/eclipse/platform/org.eclipse.core.commands/3.8.1/org.eclipse.core.commands-3.8.1.jar!/" />
+      <root url="jar://$USER_HOME$/maven/repo-hama/org/eclipse/platform/org.eclipse.core.commands/3.8.1/org.eclipse.core.commands-3.8.1.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/maven/repo/org/eclipse/platform/org.eclipse.core.commands/3.8.1/org.eclipse.core.commands-3.8.1-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/maven/repo-hama/org/eclipse/platform/org.eclipse.core.commands/3.8.1/org.eclipse.core.commands-3.8.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/maven/repo/org/eclipse/platform/org.eclipse.core.commands/3.8.1/org.eclipse.core.commands-3.8.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/maven/repo-hama/org/eclipse/platform/org.eclipse.core.commands/3.8.1/org.eclipse.core.commands-3.8.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

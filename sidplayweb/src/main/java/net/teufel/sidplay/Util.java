@@ -9,7 +9,7 @@ public class Util {
     public static DataSource getDataSource() {
         try {
             InitialContext context = new InitialContext();
-            DataSource ds = (DataSource) context.lookup("java:jboss/datasources/h2-ds");
+            DataSource ds = (DataSource) context.lookup("java:jboss/datasources/sqlite-ds");
             if (ds==null) {
                 System.out.println("no Datasource found");
             }
