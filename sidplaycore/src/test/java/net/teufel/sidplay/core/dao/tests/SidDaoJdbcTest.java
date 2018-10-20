@@ -1,9 +1,6 @@
 package net.teufel.sidplay.core.dao.tests;
 
-import static org.junit.Assert.*;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Test;
 
 import net.teufel.sidplay.core.dao.DataSourceFactory;
 import net.teufel.sidplay.core.dao.SidDaoJdbc;
@@ -12,7 +9,7 @@ import net.teufel.sidplay.core.domain.Type;
 public class SidDaoJdbcTest {
 
 	private SidDaoJdbc sidDaoJdbc;
-
+/*
 	@Before
 	public void setUp() {
 		this.sidDaoJdbc = new SidDaoJdbc(DataSourceFactory.erzeugeDataSource());
@@ -43,11 +40,11 @@ public class SidDaoJdbcTest {
 		assertEquals("GAMES", type.getType());
 		
 	}
-	
+
 	@Test
 	public void testGetSid() {
 		assertNotNull(sidDaoJdbc.getSid());
 	}
-	
+	*/
 
 }

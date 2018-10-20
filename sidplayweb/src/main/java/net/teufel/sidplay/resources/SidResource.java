@@ -16,16 +16,15 @@ import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.util.List;
 
-@ApplicationScoped
-
+@Path("/sids")
 public class SidResource {
 
     @Inject SidDaoJdbc sidDao;
 
     @GET
-    @Path("/sids")
+    @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response doSearch(@QueryParam("search") String search) {
+    public Response doSearch(@QueryParam("filter") String search) {
 
         List<Sid> result = sidDao.findSids(search);
         if(result == null) {
@@ -35,13 +34,32 @@ public class SidResource {
 
     }
 
+
     @GET
     @Path("/sid/{sidId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSidDetails(@PathParam("sidId") int sidId) {
+
+        if (!sidDao.isSidAvailable(sidId)) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        return Response.ok(sidDao.getSidDetail(sidId), MediaType.APPLICATION_JSON).build();
+
+    }
+
+    @GET
+    @Path("/file/{sidId}")
     @Produces("application/octet-stream")
-    public Response getSid(@PathParam("sidId") int sidId) throws URISyntaxException {
+    public Response getSidFile(@PathParam("sidId") int sidId) {
+        System.out.println("sidId=" + sidId);
+
+        if (!sidDao.isSidAvailable(sidId)) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
 
         try {
-            InputStream is = sidDao.getSid(sidId);
+            InputStream is = sidDao.getSidFile(sidId);
             StreamingOutput stream = output -> {
                 try {
                     pipe(is, output);
@@ -51,6 +69,7 @@ public class SidResource {
             };
             return Response.ok(stream).build();
         } catch (Exception e) {
+            e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }

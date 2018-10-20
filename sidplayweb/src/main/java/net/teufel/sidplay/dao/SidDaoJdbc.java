@@ -1,8 +1,11 @@
 package net.teufel.sidplay.dao;
 
 import net.teufel.sidplay.domain.Sid;
+import net.teufel.sidplay.domain.SidDetail;
+import net.teufel.sidplay.domain.Subtune;
 import net.teufel.sidplay.domain.Type;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.annotation.PostConstruct;
@@ -41,9 +44,9 @@ public class SidDaoJdbc {
 
             Sid sid = new Sid();
             sid.setSidId(rs.getInt("ID"));
-            sid.setTitle(rs.getString("TITLE"));
-            sid.setAuthor(rs.getString("AUTHOR"));
-            sid.setRelease(rs.getString("RELEASE"));
+            sid.setTitle(rs.getString("TITLE").trim());
+            sid.setAuthor(rs.getString("AUTHOR").trim());
+            sid.setRelease(rs.getString("RELEASE").trim());
             result.add(sid);
 
         });
@@ -54,6 +57,72 @@ public class SidDaoJdbc {
         return result;
 
     }
+
+    public SidDetail getSidDetail(int sidId) {
+
+        String sql = "select s.id, s.title, s.author, s.release, s.no_subtunes, s.preferred_model, " +
+                "      sf.path, sf.file_name, si.type_id, t.type, si.value " +
+                "from sid s, sid_files sf, sid_idx si, type t " +
+                "where s.id=sf.sid_id and s.id=si.sid_id and si.type_id=t.id " +
+                "and s.id=" + sidId;
+
+        final SidDetail sidDetail = new SidDetail();
+
+        jdbcTemplate.query(sql, rs -> {
+            sidDetail.setId(rs.getInt("ID"));
+            sidDetail.setTitle(rs.getString("TITLE").trim());
+            sidDetail.setAuthor(rs.getString("AUTHOR").trim());
+            sidDetail.setRelease(rs.getString("RELEASE").trim());
+            sidDetail.setNoSubtunes(rs.getInt("NO_SUBTUNES"));
+            sidDetail.setPreferredModel(rs.getString("PREFERRED_MODEL"));
+            sidDetail.setHvscPath(rs.getString("PATH"));
+            sidDetail.setFileName(rs.getString("FILE_NAME"));
+            sidDetail.setTypeId(rs.getInt("TYPE_ID"));
+            sidDetail.setType(rs.getString("TYPE"));
+            sidDetail.setFilterString(rs.getString("VALUE"));
+        });
+
+        sidDetail.setSubtunes(getSubtunes(sidId));
+
+        return sidDetail;
+
+    }
+
+    private List<Subtune> getSubtunes(int sidId) {
+
+        String sql = "select no_subtune, length from sid_songlength where sid_id=" + sidId;
+
+        final List<Subtune> subtunes = new ArrayList<>();
+
+        jdbcTemplate.query(sql, rs -> {
+
+            Subtune subtune = new Subtune();
+            subtune.setSubtuneNo(rs.getInt("NO_SUBTUNE"));
+            subtune.setLength(rs.getString("LENGTH"));
+            subtunes.add(subtune);
+
+        });
+
+        if (subtunes.size()==0)
+            return null;
+
+        return subtunes;
+
+    }
+
+    public boolean isSidAvailable(int sidId) {
+
+        String sql = "select count(*) from sid where id=" + sidId;
+
+        int rows = jdbcTemplate.queryForObject(sql, Integer.class);
+
+        if (rows==1) {
+            return true;
+        }
+        return false;
+
+    }
+
 
     public List<Type> getTypes() {
 
@@ -66,10 +135,9 @@ public class SidDaoJdbc {
     }
 
 
-
-    public InputStream getSid(int sidId) {
-        String sql = "select file from sid_files where sid_id=?";
-        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> rs.getBlob("file").getBinaryStream(), sidId );
+    public InputStream getSidFile(int sidId) {
+        String sql = "select file from sid_files where sid_id=" + sidId;
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> rs.getBinaryStream("file") );
     }
 
 }

@@ -9,7 +9,7 @@ swarm:
     data-sources:
       sqlite-ds:
         driver-name: sqlite-driver
-        connection-url: jdbc:sqlite:/Users/vzteufem/Desktop/sid.db
+        connection-url: jdbc:sqlite:/home/marc/sid.db
     jdbc-drivers:
       sqlite-driver:
         driver-class-name: org.sqlite.JDBC
