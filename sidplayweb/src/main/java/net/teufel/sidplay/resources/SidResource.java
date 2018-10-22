@@ -3,6 +3,7 @@ package net.teufel.sidplay.resources;
 
 import net.teufel.sidplay.dao.SidDaoJdbc;
 import net.teufel.sidplay.domain.Sid;
+import net.teufel.sidplay.domain.TableData;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -30,7 +31,14 @@ public class SidResource {
         if(result == null) {
             return Response.status(Response.Status.NOT_FOUND).entity("No Data found").build();
         }
-        return Response.ok(result, MediaType.APPLICATION_JSON).build();
+
+        TableData<Sid> tableData = new TableData<>();
+        tableData.addColumn("title","Title");
+        tableData.addColumn("author","Author");
+        tableData.addColumn("release","Release");
+        tableData.setTableData(result);
+
+        return Response.ok(tableData, MediaType.APPLICATION_JSON).build();
 
     }
 
