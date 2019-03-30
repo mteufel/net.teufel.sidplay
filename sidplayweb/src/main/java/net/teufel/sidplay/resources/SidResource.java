@@ -4,6 +4,7 @@ package net.teufel.sidplay.resources;
 import net.teufel.sidplay.dao.SidDaoJdbc;
 import net.teufel.sidplay.domain.Sid;
 import net.teufel.sidplay.domain.TableData;
+import net.teufel.sidplay.domain.Version;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -21,6 +22,14 @@ import java.util.List;
 public class SidResource {
 
     @Inject SidDaoJdbc sidDao;
+
+    @GET
+    @Path("/version")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response version() {
+        return Response.ok(new Version(), MediaType.APPLICATION_JSON).build();
+    }
+
 
     @GET
     @Path("/search")

@@ -1,1 +1,2 @@
-java -jar target/sidplayweb.jar -Dswarm.datasources.data-sources.sqlite-ds.connection-url=jdbc:sqlite:/home/marc/test/sid.db
+java -jar target/sidplayweb.jar
+-Dswarm.datasources.data-sources.sqlite-ds.connection-url=jdbc:sqlite:/home/marc/test/sid.db

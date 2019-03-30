@@ -3,7 +3,7 @@
     </properties>
 
     <resources>
-        <artifact name="org.xerial:sqlite-jdbc:3.25.2"/>
+        <artifact name="org.xerial:sqlite-jdbc:3.27.2.1"/>
     </resources>
 
     <dependencies>
